@@ -270,8 +270,8 @@ cd hybris
 autoreconf -v -f -i
 %reconfigure \
   --enable-wayland \
-  %{!?qa_stage_devel:--enable-debug} \
-  %{!?qa_stage_devel:--enable-trace} \
+  %{?qa_stage_devel:--enable-debug} \
+  %{?qa_stage_devel:--enable-trace} \
   --with-android-headers=/usr/lib/droid-devel/droid-headers \
   --enable-property-cache \
 %ifarch %{arm}
