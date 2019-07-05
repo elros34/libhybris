@@ -316,9 +316,9 @@ autoreconf -v -f -i
 %endif
 %ifarch %{aarch64}
   --enable-arch=arm64 \
-  --with-default-hybris-ld-library-path=/usr/libexec/droid-hybris/system/lib64:/vendor/lib64/egl:/vendor/lib64:/system/lib64:/odm/lib64 \
+  --with-default-hybris-ld-library-path=/usr/libexec/droid-hybris/system/lib64:/system/lib64:/odm/lib64:/vendor/lib64 \
 %else
-  --with-default-hybris-ld-library-path=/usr/libexec/droid-hybris/system/lib:/vendor/lib/egl:/vendor/lib:/system/lib:/odm/lib \
+  --with-default-hybris-ld-library-path=/usr/libexec/droid-hybris/system/lib:/system/lib:/odm/lib:/vendor/lib \
 %endif
   --enable-silent-rules
 
