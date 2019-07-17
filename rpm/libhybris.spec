@@ -298,7 +298,7 @@ autoreconf -v -f -i
 %configure \
   --enable-wayland \
   %{?qa_stage_devel:--enable-debug} \
-  %{?qa_stage_devel:--enable-trace} \
+  --enable-trace \
 %ifarch %{arm}
   %{?qa_stage_devel:--enable-arm-tracing} \
 %endif
