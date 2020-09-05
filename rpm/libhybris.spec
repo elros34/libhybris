@@ -32,6 +32,7 @@ Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 Provides: libEGL
 Provides: libEGL.so.1
+Conflicts: mesa-llvmpipe-libEGL
 
 %description libEGL
 %{summary}.
@@ -43,6 +44,7 @@ Requires: %{name}-libEGL = %{version}-%{release}
 Requires: %{name}-devel = %{version}-%{release}
 Requires: pkgconfig(android-headers)
 Provides: libEGL-devel
+Conflicts: mesa-llvmpipe-libEGL-devel
 
 %description libEGL-devel
 %{summary}.
@@ -54,6 +56,7 @@ Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 Provides: libGLESv1
 Provides: libGLES_CM.so.1
+Conflicts: mesa-llvmpipe-libGLESv1
 
 %description libGLESv1
 %{summary}.
@@ -64,6 +67,7 @@ Requires: %{name} = %{version}-%{release}
 Requires: %{name}-libGLESv1 = %{version}-%{release}
 Requires: %{name}-devel = %{version}-%{release}
 Provides: libGLESv1-devel
+Conflicts: mesa-llvmpipe-libGLESv1-devel
 
 %description libGLESv1-devel
 %{summary}.
@@ -75,6 +79,7 @@ Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 Provides: libGLESv2
 Provides: libGLESv2.so.2
+Conflicts: mesa-llvmpipe-libGLESv2
 
 %description libGLESv2
 %{summary}.
@@ -85,6 +90,7 @@ Requires: %{name} = %{version}-%{release}
 Requires: %{name}-libGLESv2 = %{version}-%{release}
 Requires: %{name}-devel = %{version}-%{release}
 Provides: libGLESv2-devel
+Conflicts: mesa-llvmpipe-libGLESv2-devel
 
 %description libGLESv2-devel
 %{summary}.
@@ -257,12 +263,12 @@ Requires:  %{name} = %{version}-%{release}
 %{summary}.
 
 %prep
-%setup -q -n %{name}-%{version}/%{name}
+%autosetup -n %{name}-%{version}/%{name}
 
 %build
 cd hybris
 autoreconf -v -f -i
-%configure \
+%reconfigure \
   --enable-wayland \
   %{!?qa_stage_devel:--enable-debug} \
   %{!?qa_stage_devel:--enable-trace} \
@@ -281,7 +287,7 @@ autoreconf -v -f -i
   --with-default-hybris-ld-library-path=/usr/libexec/droid-hybris/system/lib:/vendor/lib:/system/lib:/odm/lib
 %endif
 
-make
+%make_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -289,7 +295,7 @@ cd hybris
 make install DESTDIR=$RPM_BUILD_ROOT
 
 # Remove the static libraries.
-rm %{buildroot}/%{_libdir}/*.la %{buildroot}/%{_libdir}/libhybris/*.la
+rm -f %{buildroot}/%{_libdir}/*.la %{buildroot}/%{_libdir}/libhybris/*.la
 
 mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}
 install -m0644 AUTHORS %{buildroot}%{_docdir}/%{name}-%{version}
