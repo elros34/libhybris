@@ -335,6 +335,9 @@ rm %{buildroot}/%{_libdir}/*.la %{buildroot}/%{_libdir}/libhybris/*.la
 mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}
 install -m0644 AUTHORS %{buildroot}%{_docdir}/%{name}-%{version}
 
+mkdir -p %{buildroot}/%{_includedir}/GLES3
+cp -f ../../headers/*.h %{buildroot}/%{_includedir}/GLES3/
+
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -453,6 +456,7 @@ install -m0644 AUTHORS %{buildroot}%{_docdir}/%{name}-%{version}
 %files libGLESv2-devel
 %defattr(-,root,root,-)
 %{_includedir}/GLES2
+%{_includedir}/GLES3
 %{_libdir}/libGLESv2.so
 %{_libdir}/pkgconfig/glesv2.pc
 
