@@ -135,10 +135,18 @@ Requires: %{name} = %{version}-%{release}
 Requires: %{name}-libhardware = %{version}-%{release}
 Requires: %{name}-libEGL = %{version}-%{release}
 Requires: %{name}-libsync = %{version}-%{release}
-BuildRequires: pkgconfig(wayland-egl)
-Requires: wayland-egl
+Provides: libwayland-egl
 
 %description libwayland-egl
+%{summary}.
+
+%package libwayland-egl-devel
+Summary: Wayland EGL development library for %{name}
+Requires: %{name} = %{version}-%{release}
+Requires: %{name}-libwayland-egl = %{version}-%{release}
+Provides: libwayland-egl-devel
+
+%description libwayland-egl-devel
 %{summary}.
 
 %package libhardware
@@ -445,7 +453,6 @@ install -m0644 AUTHORS %{buildroot}%{_docdir}/%{name}-%{version}
 %files libGLESv2-devel
 %defattr(-,root,root,-)
 %{_includedir}/GLES2
-%{_includedir}/GLES3
 %{_libdir}/libGLESv2.so
 %{_libdir}/pkgconfig/glesv2.pc
 
@@ -470,6 +477,12 @@ install -m0644 AUTHORS %{buildroot}%{_docdir}/%{name}-%{version}
 %files libwayland-egl
 %defattr(-,root,root,-)
 %{_libdir}/libhybris/eglplatform_wayland.so
+%{_libdir}/libwayland-egl.so.*
+
+%files libwayland-egl-devel
+%defattr(-,root,root,-)
+%{_libdir}/libwayland-egl.so
+%{_libdir}/pkgconfig/wayland-egl.pc
 
 %files libhardware
 %defattr(-,root,root,-)
