@@ -453,6 +453,7 @@ install -m0644 AUTHORS %{buildroot}%{_docdir}/%{name}-%{version}
 %files libGLESv2-devel
 %defattr(-,root,root,-)
 %{_includedir}/GLES2
+%{_includedir}/GLES3
 %{_libdir}/libGLESv2.so
 %{_libdir}/pkgconfig/glesv2.pc
 
