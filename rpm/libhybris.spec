@@ -523,7 +523,6 @@ install -m0644 AUTHORS %{buildroot}%{_docdir}/%{name}-%{version}
 %{_bindir}/test_egl
 %{_bindir}/test_egl_configs
 %{_bindir}/test_glesv2
-%{_bindir}/test_glesv3
 %{_bindir}/test_gps
 %{_bindir}/test_hwcomposer
 %{_bindir}/test_lights
@@ -532,6 +531,7 @@ install -m0644 AUTHORS %{buildroot}%{_docdir}/%{name}-%{version}
 %{_bindir}/test_sensors
 %{_bindir}/test_vibrator
 %{_bindir}/test_wifi
+%{_bindir}/test_hwc2
 
 %files tests-upstream
 %defattr(-,root,root,-)
